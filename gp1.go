@@ -3,8 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"gopbf/user"
+	"log"
 
-	"github.com/go-prj-code/gopbf/user"
+	"google.golang.org/protobuf/proto"
+	// "git.chinaase.com/stu_self/gopbf/user"
 )
 
 type sp string
@@ -25,4 +28,21 @@ func main() {
 	u.UserName = "star"
 	b, _ := json.Marshal(u)
 	fmt.Println(string(b))
+
+	//序列化
+	out, err := proto.Marshal(&u)
+	if err != nil {
+		log.Fatalln("failed to:", err)
+	}
+	fmt.Println(out)
+
+	//反序列化
+	i := user.User{}
+	err = proto.Unmarshal(out, &i)
+	if err != nil {
+		log.Fatalln("failed to:", err)
+
+	}
+	b2, _ := json.Marshal(i)
+	fmt.Println(b2)
 }

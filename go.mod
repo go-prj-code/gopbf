@@ -1,4 +1,4 @@
-module git.chinaase.com/stu_self/gopbf
+module gopbf
 
 go 1.17
 
