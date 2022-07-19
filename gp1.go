@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"http://git.chinaase.com/stu_self/gopbf/user"
+
+	"github.com/go-prj-code/gopbf/user"
 )
 
 type sp string
@@ -19,4 +21,8 @@ func main01() {
 
 func main() {
 	u := user.User{}
+	u.Password = "123456"
+	u.UserName = "star"
+	b, _ := json.Marshal(u)
+	fmt.Println(string(b))
 }
